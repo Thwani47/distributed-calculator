@@ -7,7 +7,7 @@ import { buttonValues } from "./utils/constants"
 
 type CalculatorState = {
   sign: string;
-  number: number;
+  number: number | string;
   result: number
 }
 
@@ -96,7 +96,7 @@ function App() {
   const addComma = () => {
     setCalculatorState({
       ...calculatorState,
-      number: !calculatorState.number.toString().includes('.') ? Number(calculatorState.number + ".") : calculatorState.number
+      number: !calculatorState.number.toString().includes('.') ? calculatorState.number + "." : calculatorState.number
     })
   }
 
