@@ -7,16 +7,16 @@ import { buttonValues } from "./utils/constants"
 
 type CalculatorState = {
   sign: string;
-  number: string;
-  result: string
+  number: number;
+  result: number
 }
 
 function App() {
 
   const [calculatorState, setCalculatorState] = useState<CalculatorState>({
     sign: '',
-    number: '0',
-    result: '0'
+    number: 0,
+    result: 0
   })
 
   const buttonClickHandler = (button: string) => {
@@ -49,6 +49,7 @@ function App() {
   }
 
   const getResult = () => {
+    console.log(calculatorState)
     if (calculatorState.sign && calculatorState.number) {
       const math = (sign: string, a: number, b: number) => {
         if (sign === '+') {
@@ -70,24 +71,24 @@ function App() {
 
       setCalculatorState({
         ...calculatorState,
-        result: calculatorState.number === '0' && calculatorState.sign === '/'
-          ? 'Cannot divide by 0'
-          : math(calculatorState.sign, Number(calculatorState.result), Number(calculatorState.number))?.toString(),
+        result: calculatorState.number === 0 && calculatorState.sign === '/'
+          ? Number.POSITIVE_INFINITY
+          : math(calculatorState.sign, Number(calculatorState.result), Number(calculatorState.number)),
         sign: '',
-        number: '0'
+        number: 0
       })
     }
   }
 
   const addNumber = (number: string) => {
-    if (calculatorState.number.length < 16) {
+    if (calculatorState.number.toString().length < 16) {
       setCalculatorState({
         ...calculatorState,
-        number: calculatorState.number === "0" && number === "0"
-          ? "0"
+        number: calculatorState.number === 0 && number === "0"
+          ? 0
           : Number(calculatorState.number) % 1 === 0
-            ? Number(calculatorState.number + number).toString()
-            : calculatorState.number + number
+            ? Number(calculatorState.number + number)
+            : Number(calculatorState.number + number)
       })
     }
   }
@@ -95,7 +96,7 @@ function App() {
   const addComma = () => {
     setCalculatorState({
       ...calculatorState,
-      number: !calculatorState.number.includes('.') ? calculatorState.number + "." : calculatorState.number
+      number: !calculatorState.number.toString().includes('.') ? Number(calculatorState.number + ".") : calculatorState.number
     })
   }
 
@@ -103,19 +104,19 @@ function App() {
     setCalculatorState({
       ...calculatorState,
       sign,
-      number: '0',
+      number: 0,
       result: !calculatorState.result && calculatorState.number ? calculatorState.number : calculatorState.result
     })
   }
 
   const calculatePercentage = () => {
     let number = Number(calculatorState.number)
-    let result = calculatorState.result ? parseFloat(calculatorState.result) : 0
+    let result = calculatorState.result ? parseFloat(calculatorState.result.toString()) : 0
 
     setCalculatorState({
       ...calculatorState,
-      number: (number /= 100).toString(),
-      result: (result /= 100).toString(),
+      number: number /= 100,
+      result: result /= 100,
       sign: ''
     })
   }
@@ -124,8 +125,8 @@ function App() {
     setCalculatorState({
       ...calculatorState,
       sign: '',
-      number: calculatorState.number ? (Number(calculatorState.number) * -1).toString() : '0',
-      result: calculatorState.result ? (Number(calculatorState.result) * -1).toString() : '0',
+      number: calculatorState.number ? (Number(calculatorState.number) * -1) : 0,
+      result: calculatorState.result ? (Number(calculatorState.result) * -1) : 0,
     })
   }
 
@@ -133,14 +134,14 @@ function App() {
     setCalculatorState({
       ...calculatorState,
       sign: '',
-      number: '0',
-      result: '0'
+      number: 0,
+      result: 0
     })
   }
 
   return (
     <Wrapper>
-      <Screen value={calculatorState.number ? calculatorState.number : calculatorState.result} />
+      <Screen value={calculatorState.number ? calculatorState.number.toString() : calculatorState.result.toString()} />
       <ButtonBox>
         {
           buttonValues.flat().map((button, index) => {
