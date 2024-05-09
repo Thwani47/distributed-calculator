@@ -1,0 +1,6 @@
+@CSharpAdder_HostAddress = http://localhost:5206
+
+GET {{CSharpAdder_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
