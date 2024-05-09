@@ -16,7 +16,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapGet("/", () => "Welcome to the CSharp Adder API")
+app.MapGet("/", () => "Welcome to the CSharp Adder API!")
     .WithName("Home")
     .WithOpenApi();
 

@@ -10,7 +10,7 @@ import (
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Welcome to the Go Subtractor API"))
+	w.Write([]byte("Welcome to the Go Subtractor API!"))
 }
 
 func HealthCheckHandler(w http.ResponseWriter, r *http.Request) {
