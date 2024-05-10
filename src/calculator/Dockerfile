@@ -1,12 +1,15 @@
-FROM node
-
+FROM node:alpine AS base
 WORKDIR /app
+COPY package.json ./
 
-COPY package.json .
-RUN npm i -f
+FROM base AS dependencies
+RUN npm i -f && npm cache clean --force
 
+FROM dependencies AS build
 COPY . .
+RUN npm run build
 
-EXPOSE 5173
-
-CMD ["npm", "run", "dev"]
+FROM nginx:stable-alpine AS release
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+cmd ["nginx", "-g", "daemon off;"]

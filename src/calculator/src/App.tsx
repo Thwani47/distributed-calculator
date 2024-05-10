@@ -105,7 +105,7 @@ function App() {
       ...calculatorState,
       sign,
       number: 0,
-      result: !calculatorState.result && calculatorState.number ? calculatorState.number : calculatorState.result
+      result: !calculatorState.result && calculatorState.number ? Number(calculatorState.number) : calculatorState.result
     })
   }
 
