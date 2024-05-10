@@ -26,7 +26,7 @@ app.MapPost("/add", (AddRequest request) =>
 {
     var response = new AddResponse
     {
-        Sum = request.FirstNumber + request.SecondNumber
+        Result = request.FirstNumber + request.SecondNumber
     };
 
     return Results.Ok(response);

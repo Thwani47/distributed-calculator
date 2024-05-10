@@ -34,6 +34,6 @@ describe('AppController (e2e)', () => {
       .post('/divide')
       .send({ firstNumber: 10, secondNumber: 5 })
       .expect(201)
-      .expect({ quotient: 2 });
+      .expect({ result: 2 });
   });
 });

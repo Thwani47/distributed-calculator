@@ -12,6 +12,11 @@
      background-color: tomato;
  }
 
+ .heading {
+    color: white;
+    margin-bottom: 20px;
+ }
+
  .wrapper {
      height: 340px;
      width: 540px;

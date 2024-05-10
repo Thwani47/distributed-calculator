@@ -1,4 +1,4 @@
-version: "4.2"
+version: "3"
 services:
   calculator:
     image: calculator
@@ -9,9 +9,9 @@ services:
       - "3000:80"
     depends_on:
       - csharp-adder
-      - flask-multiplier
-      - go-subtractor
-      - nestjs-divider
+      # - flask-multiplier
+      # - go-subtractor
+      # - nestjs-divider
   csharp-adder:
     image: csharp-adder
     build:
@@ -40,3 +40,4 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8004:3000"
+  

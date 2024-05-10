@@ -4,6 +4,7 @@ import ButtonBox from "./components/ButtonBox"
 import Screen from "./components/Screen"
 import Wrapper from "./components/Wrapper"
 import { buttonValues } from "./utils/constants"
+import { calculate } from "./utils/calculator"
 
 type CalculatorState = {
   sign: string;
@@ -48,32 +49,15 @@ function App() {
     }
   }
 
-  const getResult = () => {
-    console.log(calculatorState)
+  const getResult = async () => {
+
     if (calculatorState.sign && calculatorState.number) {
-      const math = (sign: string, a: number, b: number) => {
-        if (sign === '+') {
-          return a + b;
-        }
-
-        else if (sign === '-') {
-          return a - b;
-        }
-
-        else if (sign === 'X') {
-          return a * b;
-        }
-
-        else {
-          return a / b
-        }
-      }
-
+      const result = calculatorState.number === 0 && calculatorState.sign === '/'
+        ? Number.POSITIVE_INFINITY
+        : await calculate(calculatorState.sign, Number(calculatorState.result), Number(calculatorState.number));
       setCalculatorState({
         ...calculatorState,
-        result: calculatorState.number === 0 && calculatorState.sign === '/'
-          ? Number.POSITIVE_INFINITY
-          : math(calculatorState.sign, Number(calculatorState.result), Number(calculatorState.number)),
+        result,
         sign: '',
         number: 0
       })
@@ -140,21 +124,24 @@ function App() {
   }
 
   return (
-    <Wrapper>
-      <Screen value={calculatorState.number ? calculatorState.number.toString() : calculatorState.result.toString()} />
-      <ButtonBox>
-        {
-          buttonValues.flat().map((button, index) => {
-            return <Button
-              key={index}
-              className={button === "=" ? "equals" : ""}
-              value={button}
-              onClick={() => buttonClickHandler(button)}
-            />
-          })
-        }
-      </ButtonBox>
-    </Wrapper>
+    <>
+    <h1 className="heading">Distributed Calculator</h1>
+      <Wrapper>
+        <Screen value={calculatorState.number ? calculatorState.number.toString() : calculatorState.result.toString()} />
+        <ButtonBox>
+          {
+            buttonValues.flat().map((button, index) => {
+              return <Button
+                key={index}
+                className={button === "=" ? "equals" : ""}
+                value={button}
+                onClick={() => buttonClickHandler(button)}
+              />
+            })
+          }
+        </ButtonBox>
+      </Wrapper>
+    </>
   )
 }
 

@@ -36,7 +36,7 @@ func SubtractionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	result := types.SubtractionResponse{
-		Difference: numbers.FirstNumber - numbers.SecondNumber,
+		Result: numbers.FirstNumber - numbers.SecondNumber,
 	}
 
 	jsonResult, err := json.Marshal(result)

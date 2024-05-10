@@ -3,5 +3,5 @@ export interface DivideRequest {
     secondNumber: number;
 }
 export interface DivideResponse {
-    quotient: number
+    result: number
 }

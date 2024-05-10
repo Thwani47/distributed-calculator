@@ -14,11 +14,11 @@ export class AppService {
   getQuotient(request: DivideRequest): DivideResponse {
     if (request.secondNumber === 0) {
       return {
-        quotient: Number.POSITIVE_INFINITY
+        result: Number.POSITIVE_INFINITY
       }
     }
     return {
-      quotient: request.firstNumber / request.secondNumber
+      result: request.firstNumber / request.secondNumber
     }
   }
 }

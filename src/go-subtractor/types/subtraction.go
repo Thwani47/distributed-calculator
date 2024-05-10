@@ -6,5 +6,5 @@ type SubtractionRequest struct {
 }
 
 type SubtractionResponse struct {
-	Difference float32 `json:"difference"`
+	Result float32 `json:"result"`
 }

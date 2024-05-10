@@ -18,7 +18,7 @@ def multiply():
     
     result = first_number * second_number
     
-    return jsonify({'product' : result})
+    return jsonify({'result' : result})
 
 if __name__ == '__main__':
     app.run()

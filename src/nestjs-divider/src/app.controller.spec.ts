@@ -28,11 +28,11 @@ describe('AppController', () => {
 
   describe('divide', () => {
     it('should divide numbers correctly', () => {
-      expect(appController.getQuotient({ firstNumber: 2, secondNumber: 1 }).quotient).toBe(2);
+      expect(appController.getQuotient({ firstNumber: 2, secondNumber: 1 }).result).toBe(2);
     })
 
     it('should handle division by 0', () => {
-      expect(appController.getQuotient({ firstNumber: 2, secondNumber: 0 }).quotient).toBe(Number.POSITIVE_INFINITY);
+      expect(appController.getQuotient({ firstNumber: 2, secondNumber: 0 }).result).toBe(Number.POSITIVE_INFINITY);
     })
   })
 
