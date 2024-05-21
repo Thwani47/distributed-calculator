@@ -17,7 +17,7 @@ $ git clone https://github.com/Thwani47/distributed-calculator.git
 2. Run the services
 ```bash
 $ cd src
-$ docker-compose up
+$ docker-compose -f docker-compose-local.yml up --build
 ```
 3. Open the calculator in your browser
 ```

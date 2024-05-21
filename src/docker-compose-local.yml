@@ -1,0 +1,43 @@
+version: "3"
+services:
+  calculator:
+    image: calculator
+    build:
+      context: calculator
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - csharp-adder
+      - flask-multiplier
+      - go-subtractor
+      - nestjs-divider
+  csharp-adder:
+    image: csharp-adder
+    build:
+      context: CsharpAdder
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8080"
+  flask-multiplier:
+    image: flask-multiplier
+    build:
+      context: flask-multiplier
+      dockerfile: Dockerfile
+    ports:
+      - "8002:5000"
+  go-subtractor:
+    image: go-subtractor
+    build:
+      context: go-subtractor
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8000"
+  nestjs-divider:
+    image: nestjs-divider
+    build:
+      context: nestjs-divider
+      dockerfile: Dockerfile
+    ports:
+      - "8004:3000"
+  

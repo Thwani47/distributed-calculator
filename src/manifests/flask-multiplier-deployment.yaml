@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-multiplier-deployment
+  labels:
+    app: flask-multiplier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-multiplier
+  template:
+    metadata:
+      labels:
+        app: flask-multiplier
+    spec:
+      containers:
+      - name: flask-multiplier
+        image: ghcr.io/thwani47/flask-multiplier:v1
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-multiplier
+spec:
+  selector:
+    app: flask-multiplier
+  ports:
+    - protocol: TCP
+      port: 8002
+      targetPort: 5000

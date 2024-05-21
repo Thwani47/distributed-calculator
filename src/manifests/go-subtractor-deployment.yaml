@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-subtractor-deployment
+  labels:
+    app: go-subtractor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-subtractor
+  template:
+    metadata:
+      labels:
+        app: go-subtractor
+    spec:
+      containers:
+      - name: go-subtractor
+        image: ghcr.io/thwani47/go-subtractor:v1
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-subtractor
+spec:
+  selector:
+    app: go-subtractor
+  ports:
+    - protocol: TCP
+      port: 8003
+      targetPort: 8000
