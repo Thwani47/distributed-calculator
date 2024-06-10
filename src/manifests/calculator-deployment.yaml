@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: calculator
-        image: ghcr.io/thwani47/calculator:v1
+        image: ghcr.io/thwani47/calculator:v2
         ports:
         - containerPort: 80
         resources:

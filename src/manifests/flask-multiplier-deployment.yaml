@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-multiplier
-        image: ghcr.io/thwani47/flask-multiplier:v1
+        image: ghcr.io/thwani47/flask-multiplier:v2
         ports:
         - containerPort: 5000
         resources:

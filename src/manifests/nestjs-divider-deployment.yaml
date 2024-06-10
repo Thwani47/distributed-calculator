@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nestjs-divider
-        image: ghcr.io/thwani47/nestjs-divider:v1
+        image: ghcr.io/thwani47/nestjs-divider:v2
         ports:
         - containerPort: 3000
         resources:
